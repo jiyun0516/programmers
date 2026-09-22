@@ -1,4 +1,4 @@
-# 동영상 재생기
+# [PCCP 기출문제] 1번 _ 동영상 재생기
 
 ## 문제
 [프로그래머스 - 동영상 재생기] https://school.programmers.co.kr/learn/courses/30/lessons/340213
