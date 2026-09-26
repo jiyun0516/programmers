@@ -1,31 +1,14 @@
-import java.util.*;
+def solution(players, callings):
+    # 선수 이름별 현재 위치
+    positions = {name: i for i, name in enumerate(players)}
 
-class Solution {
-    public String[] solution(String[] players, String[] callings) {
-        Map<String, Integer> rank = new HashMap<>();
+    for name in callings:
+        current = positions[name]
+        ahead_name = players[current - 1]
 
-        // 선수별 현재 위치 저장
-        for (int i = 0; i < players.length; i++) {
-            rank.put(players[i], i);
-        }
+        # 두 선수의 순서와 위치 갱신
+        players[current - 1], players[current] = players[current], players[current - 1]
+        positions[name] = current - 1
+        positions[ahead_name] = current
 
-        for (String calling : callings) {
-
-            // 추월한 선수의 현재 위치
-            int currentIndex = rank.get(calling);
-
-            // 바로 앞 선수
-            String frontPlayer = players[currentIndex - 1];
-
-            // 배열에서 두 선수 위치 교환
-            players[currentIndex - 1] = calling;
-            players[currentIndex] = frontPlayer;
-
-            // HashMap의 위치도 수정
-            rank.put(calling, currentIndex - 1);
-            rank.put(frontPlayer, currentIndex);
-        }
-
-        return players;
-    }
-}
+    return players
